@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercure Hotels - Información General</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://cf.bstatic.com/xdata/images/hotel/max1024x768/318551022.jpg?k=493dc716799d4c2b280deb91997ba6d7b721f63f37b0e68300ca59d6acf4dd9c&o=&hp=1') no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 10px 0;
+            background-color: rgba(44, 62, 80, 0.9);
+            color: white;
+        }
+        header img {
+            max-height: 800px;
+            width: auto;
+        }
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 15px;
+        }
+        .info {
+            flex: 1 1 45%;
+            margin: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .info h2 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .info ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .info li {
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(52, 73, 94, 0.9);
+            color: white;
+            font-size: 28px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://wetu.com/ImageHandler/n360x150/Operators/55747/logo_mercure-011.jpg?fmt=png" alt="Logo Mercure Hotels">
+    </header>
+
+    <main class="main-content">
+        <section class="info">
+            <h2>Información General</h2>
+            <ul>
+                <li><strong>Gerente General:</strong> <span id="gm-name">Nombre del GM</span></li>
+                <li><strong>Manager on Duty:</strong> <span id="mod-name">Nombre</span></li>
+                <li><strong>Check-in:</strong> <span id="checkin-time">Horario</span></li>
+                <li><strong>Check-out:</strong> <span id="checkout-time">Horario</span></li>
+                <li><strong>Apertura Spa:</strong> <span id="spa-open">Horario</span></li>
+                <li><strong>Cierre Spa:</strong> <span id="spa-close">Horario</span></li>
+            </ul>
+        </section>
+
+        <section class="info">
+            <h2>Clima Actual</h2>
+            <p>Puerto Iguazú: <span id="weather-temp">--</span>°C, <span id="weather-desc">--</span></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Fecha y hora actual: <span id="current-time"></span></p>
+    </footer>
+
+    <script>
+        // Actualizar la hora actual
+        setInterval(() => {
+            document.getElementById('current-time').textContent = new Date().toLocaleString('es-AR');
+        }, 1000);
+
+        // Obtener clima en tiempo real
+        const apiKey = 'TU_API_KEY_DE_OPENWEATHER';
+        const city = 'Puerto Iguazu';
+        const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&lang=es&appid=${apiKey}`;
+
+        async function fetchWeather() {
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                document.getElementById('weather-temp').textContent = data.main.temp;
+                document.getElementById('weather-desc').textContent = data.weather[0].description;
+            } catch (error) {
+                console.error('Error al obtener el clima:', error);
+            }
+        }
+
+        fetchWeather();
+        setInterval(fetchWeather, 600000); // Actualizar cada 10 minutos
+    </script>
+</body>
+</html>
