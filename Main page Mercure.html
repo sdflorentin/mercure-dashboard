@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercure Hotels - Información General</title>
+    <title>Información General y Cotizaciones</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,7 +20,7 @@
             color: white;
         }
         header img {
-            max-height: 800px;
+            max-height: 200px;
             width: auto;
         }
         .main-content {
@@ -48,14 +48,17 @@
         }
         .info li {
             margin-bottom: 10px;
-            font-size: 28px;
+            font-size: 18px;
         }
         footer {
             text-align: center;
             padding: 20px;
             background-color: rgba(52, 73, 94, 0.9);
             color: white;
-            font-size: 28px;
+            font-size: 16px;
+        }
+        .exchange-rates, .rack-rate {
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -80,6 +83,20 @@
         <section class="info">
             <h2>Clima Actual</h2>
             <p>Puerto Iguazú: <span id="weather-temp">--</span>°C, <span id="weather-desc">--</span></p>
+
+            <div class="rack-rate">
+                <h3>Tarifa Rack</h3>
+                <p><strong>USD:</strong> <span id="rack-rate">$0.00</span></p>
+            </div>
+
+            <div class="exchange-rates">
+                <h3>Cotizaciones</h3>
+                <ul>
+                    <li><strong>Euro:</strong> <span id="euro-rate">--</span></li>
+                    <li><strong>Dólar:</strong> <span id="dollar-rate">--</span></li>
+                    <li><strong>Real:</strong> <span id="real-rate">--</span></li>
+                </ul>
+            </div>
         </section>
     </main>
 
